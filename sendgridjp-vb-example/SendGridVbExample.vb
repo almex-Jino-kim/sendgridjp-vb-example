@@ -1,7 +1,7 @@
 ﻿Imports System.Net
 Imports System.Net.Mail
 Imports System.Configuration
-Imports SendGridMail
+Imports SendGrid
 
 Module SendGridVbExample
 
@@ -21,7 +21,7 @@ Module SendGridVbExample
         smtpapi.AddSection("home", "目黒")
         smtpapi.SetCategory("カテゴリ1")
 
-        Dim email = SendGrid.GetInstance()
+        Dim email = New SendGrid.SendGridMessage()
         email.AddTo(from)  ' SmtpapiのSetTo()を使用しているため、実際にはこのアドレスにはメールは送信されない
         email.From = New MailAddress(from, "送信者名")
         email.Subject = "[sendgrid-vb-example] フクロウのお名前はfullnameさん"
@@ -31,7 +31,7 @@ Module SendGridVbExample
         email.AddAttachment("..\..\gif.gif")
 
         Dim credentials = New NetworkCredential(sendGridUserName, sendGridPassword)
-        Dim web As Web = web.GetInstance(credentials)
+        Dim web As Web = New Web(credentials)
         web.Deliver(email)
 
     End Sub
