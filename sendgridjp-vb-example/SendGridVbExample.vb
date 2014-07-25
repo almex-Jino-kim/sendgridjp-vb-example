@@ -19,7 +19,7 @@ Module SendGridVbExample
         smtpapi.AddSubstitution("place", {"office", "home", "office"})
         smtpapi.AddSection("office", "中野")
         smtpapi.AddSection("home", "目黒")
-        smtpapi.SetCategory("カテゴリ1")
+        smtpapi.SetCategory("category1")
 
         Dim email = New SendGrid.SendGridMessage()
         email.AddTo(from)  ' SmtpapiのSetTo()を使用しているため、実際にはこのアドレスにはメールは送信されない
