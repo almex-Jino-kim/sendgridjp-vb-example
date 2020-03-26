@@ -7,12 +7,14 @@ Module SendGridVbExample
 
     Sub Main()
 
+        'Dim sendGridApiKey = ConfigurationManager.AppSettings("SENDGRID_APIKEY")
+        'Dim sendGridApiKeyId = ConfigurationManager.AppSettings("SENDGRID_APIKEY_ID")
         Dim sendGridUserName = ConfigurationManager.AppSettings("SENDGRID_USERNAME")
         Dim sendGridPassword = ConfigurationManager.AppSettings("SENDGRID_PASSWORD")
         Dim tos = ConfigurationManager.AppSettings("TOS").Split(",")
         Dim from = ConfigurationManager.AppSettings("FROM")
 
-        Dim smtpapi = New Smtpapi.Header()
+        Dim smtpapi = New SmtpApi.Header()
         smtpapi.SetTo(tos)
         smtpapi.AddSubstitution("fullname", {"田中 太郎", "佐藤 次郎", "鈴木 三郎"})
         smtpapi.AddSubstitution("familyname", {"田中", "佐藤", "鈴木"})
@@ -28,12 +30,13 @@ Module SendGridVbExample
         email.Text = "familyname さんは何をしていますか？\r\n 彼はplaceにいます。"
         email.Html = "<strong> familyname さんは何をしていますか？</strong><br />彼はplaceにいます。"
         email.Headers.Add("X-Smtpapi", smtpapi.JsonString())
-        email.AddAttachment("..\..\gif.gif")
+        'email.AddAttachment("..\..\gif.gif")
 
         Dim credentials = New NetworkCredential(sendGridUserName, sendGridPassword)
         Dim web As Web = New Web(credentials)
         web.Deliver(email)
 
     End Sub
+
 
 End Module
