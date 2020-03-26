@@ -7,8 +7,6 @@ Module SendGridVbExample
 
     Sub Main()
 
-        'Dim sendGridApiKey = ConfigurationManager.AppSettings("SENDGRID_APIKEY")
-        'Dim sendGridApiKeyId = ConfigurationManager.AppSettings("SENDGRID_APIKEY_ID")
         Dim sendGridUserName = ConfigurationManager.AppSettings("SENDGRID_USERNAME")
         Dim sendGridPassword = ConfigurationManager.AppSettings("SENDGRID_PASSWORD")
         Dim tos = ConfigurationManager.AppSettings("TOS").Split(",")
@@ -37,6 +35,5 @@ Module SendGridVbExample
         web.Deliver(email)
 
     End Sub
-
 
 End Module
